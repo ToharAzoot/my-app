@@ -7,19 +7,25 @@ import AdministerFirst from './AdministerFirst';
 import Name from './Name';
 import Signup from './Signup';
 import { BrowserRouter, Route,Switch } from 'react-router-dom';
-import axios from './axios';
 import Error from './error';
 import AddChild from './AddChild';
 import Goodbye from './Goodbye';
 import Propertychildren from './Propertychildren';
 import './App.css';
-
+import axios from './axios';
 class App extends Component {
+constructor (){
+  super();
+   simulation();
+}
+
   render ()
   {
+    
     return(
       //  <div className="App">
       <div>
+        
       <header className="App-header">
         <Switch>
           <Route path="/Userchild/:value" component={Userchild} />
@@ -37,5 +43,15 @@ class App extends Component {
     );
   }
 }
+const simulation = () => {
 
+    // console.log(grid);
+    console.log('hey');
+    let r= axios.get('User/ChackIfSendAReminderEmail/');
+
+    setTimeout(simulation, 60000*5)
+
+}
+ 
 export default App;
+;

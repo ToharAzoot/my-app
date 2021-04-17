@@ -8,9 +8,12 @@ class Goodbye extends Component {
   render ()
   {
 
-     return(  <div><p>good bye</p><Link to='/Signup'><button>אישור</button></Link></div>
+     return(  <div>         
+
+       <p>good bye</p><Link to='/Signup'><button>אישור</button></Link></div>
      );
   }
+
 }
 
 export default Goodbye;

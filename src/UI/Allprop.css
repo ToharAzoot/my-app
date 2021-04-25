@@ -1,0 +1,56 @@
+.allprop-header{
+  background-image: url("../assets/ff5d0cd4bc7d06758a21e1b238311bbc.jpg");
+  background-size: 100% 99%;
+  background-position: center;
+  min-height: 110vh; 
+  background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  justify-content: space-around; 
+  font-size: calc(10px + 2vmin);
+  color: rgb(8, 10, 8);
+}
+#allprop-form{
+  display: inline-block;
+  direction: rtl;
+  width: 350px;
+  height: 460px;
+  border-radius: 15px;
+  color: purple;
+  font-size: 18pt;
+  font-weight: normal;
+  border: 2px solid purple;
+  background-color: rgb(255,105,180,0.8);
+  margin: 25%;
+  margin-top: 5%;
+  padding-top: 20px;
+  padding-right: 30px;
+}
+.allprop-detail{
+  display: flex;
+  flex-direction: column;
+}
+.allprop-input{
+  opacity: 60%;
+  box-shadow: 0 2px 3px #ccc;
+  width: 184px;
+  height: 28px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+.allprop-submitsave{
+    position: absolute;
+    background-color: rgb(238, 212, 236);
+    color: purple;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 10px 25px;
+    margin-right: 13%;
+    border: 1px solid purple;
+}
+.allprop-submitsave:hover{
+  background-color: rgba(107, 54, 103, 0.3);
+    color: white;
+}

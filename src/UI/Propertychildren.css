@@ -1,0 +1,52 @@
+.propertychildren-header{
+  background-image: url("../assets/boy-girl-home-playing-with-toys-together.jpg");
+  background-size: 100% 99%;
+  background-position: center;
+  min-height: 110vh; 
+  background-repeat: no-repeat;
+  /* display: flex; */
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(8, 10, 8);
+}
+#propertychildren-form{
+  font-size: 24px;
+  color: purple;
+  border: 1px solid black;
+  direction: rtl;
+  width: 390px;
+  height: 180px;
+  padding: 20px 30px 0px 0px;
+  margin-right: 140px;
+  margin-top: 150px;
+  background-color: rgb(126, 120, 120,0.3);
+  border-radius: 15px;
+  float: right;
+}
+.input{
+  opacity: 60%;
+  box-shadow: 0 2px 3px #ccc;
+  width: 184px;
+  height: 25px;
+  display: block;
+  border-radius: 30px;
+  margin-bottom: 10px;
+}
+.SubmitUserChild{
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    background-color: rgb(148, 75, 148,0.8);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 10px 25px;
+    border: none;
+}
+/* rgb(148, 75, 148) */
+.SubmitUserChild:hover{
+    background-color: rgba(99, 6, 99, 0.8);
+    color: white;
+}

@@ -1,0 +1,17 @@
+.userchild-header{
+  background-image: url("../assets/ff5d0cd4bc7d06758a21e1b238311bbc.jpg");
+  background-size: 100% 99%;
+  background-position: center;
+  min-height: 110vh; 
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+.userchild-text{
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgb(255,105,180);
+    -webkit-text-stroke: 2px black;
+    margin-top: 5%;
+    margin-right: 70%;
+}

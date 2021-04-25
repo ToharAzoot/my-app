@@ -1,0 +1,4 @@
+Things to Fix:
+1. in the show_child page there is a problem with the setChildIn function
+2. in the add_child page there is a problem in the add child function
+3. in the edit_child page I couldn't find the way to get the child's information

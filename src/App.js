@@ -1,76 +1,79 @@
 import React, { Component } from 'react'
-import logo from './logo.svg';
-import Userchild from './Userchild';
-import Administer from './Administer';
-import Allprop from './Allprop';
-import AdministerFirst from './AdministerFirst';
-import Name from './Name';
-import Signup from './Signup';
-import { BrowserRouter, Route,Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Error from './error';
-import AddChild from './AddChild';
-import Goodbye from './Goodbye';
-import Propertychildren from './Propertychildren';
 import ConfirmationArrivalChild from './ConfirmationArrivalChild';
-
 import './App.css';
 import axios from './axios';
+import SignUp from './components/sign_up'
+import Child from './components/show_child'
+import Goodbye from './components/good_bye'
+import AdministerFirst from './components/admin_first'
+import Administer from './components/administer'
+import AddChild from './components/add_child'
+import GetChild from './components/get_child'
+import EditChild from './components/edit_child';
+
 class App extends Component {
 
-constructor (){
-  super();
-  debugger;
-
-  simulation();
-  // פונקציה שקורת פעם ביום ומאפסת את הטבלה של העת הילד 
-  setInterval(function () {
-    var date = new Date();
-    if ( date.getHours() === 6 && date.getMinutes === 0) {
-      let r= axios.get('User/ResetDailyAlerts/');
-
+  constructor (){
+    super();
+    simulation();
+    this.state = {
+      showLoader: false
     }
-}, 1000)
+    this.toggleLoader = this.toggleLoader.bind(this);
+
+    // פונקציה שקורת פעם ביום ומאפסת את הטבלה של העת הילד 
+  // פונקציה שקורת פעם ביום ומאפסת את הטבלה של העת הילד 
+    // פונקציה שקורת פעם ביום ומאפסת את הטבלה של העת הילד 
+    setInterval(function () {
+      var date = new Date();
+      if ( date.getHours() === 6 && date.getMinutes === 0) {
+        let r = axios.get('User/ResetDailyAlerts/');
+      }
+    }, 1000)
 
   }
 
+  toggleLoader = () => {
+    this.setState({showLoader: !this.state.showLoader})
+  }
 
-
-
-  render ()
-  {
-    
-    return(
-      //  <div className="App">
-      <div>
-        
-      <header className="App-header">
-        <Switch>
-          <Route path="/Userchild/:value" component={Userchild} />
-          <Route path="/Allprop/:value" component={Allprop} />
-          <Route path="/Signup" component={Signup} />
-          <Route path="/AdministerFirst" component={AdministerFirst} />
-          <Route path="/Administer" component={Administer} />
-          <Route path="/Propertychildren" component={Propertychildren} />
-          <Route path="/AddChild" component={AddChild} />
-          <Route path="/Goodbye" component={Goodbye} />
-          <Route path="/ConfirmationArrivalChild/:value" component={ConfirmationArrivalChild} />
-          <Route component={Error} />
-        </Switch>
-      </header>
-    </div>
-    );
+  render () {  
+      return(
+        <div>
+          <header className="App-header">
+            <Switch>
+              <Route path="/child">
+                <Child showLoader={this.state.showLoader} toggleLoader={this.state.toggleLoader}/>
+              </Route>
+              <Route path="/Signup">
+                <SignUp toggleLoader={this.toggleLoader} showLoader={this.state.showLoader}/>
+              </Route>
+              <Route path="/GetChild">
+                <GetChild />
+              </Route>
+              <Route path="/Edit/:id">
+                <EditChild />
+              </Route>
+              <Route path="/AdministerFirst" component={AdministerFirst} />
+              <Route path="/Administer" component={Administer} />
+              <Route path="/AddChild" component={AddChild} />
+              <Route path="/Goodbye" component={Goodbye} />
+              <Route path="/ConfirmationArrivalChild/:value" component={ConfirmationArrivalChild} />
+              <Route path="/">
+                <SignUp toggleLoader={this.toggleLoader} showLoader={this.state.showLoader}/>
+              </Route>
+              <Route component={Error} />
+            </Switch>
+          </header>
+        </div>
+      );
   }
 }
+
 const simulation = () => {
-
-    // console.log(grid);
-    console.log('hey');
-    let r= axios.get('User/ChackIfSendAReminderEmail/');
-
-    // setTimeout(simulation, 60000*5)
-
+    let r = axios.get('User/ChackIfSendAReminderEmail/');
 }
-// console.log('hey');
-// let r= axios.get('User/ChackIfSendAReminderEmail/');
+
 export default App;
-;

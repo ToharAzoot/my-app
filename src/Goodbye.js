@@ -9,9 +9,9 @@ class Goodbye extends Component {
   render() {
     return (
       <div className="Goodbye-header">
-        <p className="textGoodbye">Good-bye !!</p>
+        <p className="textGoodbye">!!Good-bye </p>
         <Link to='/Signup'>
-          <button className="SubmitGoodbye">כניסה</button>
+          <button className="SubmitGoodbye">אישור</button>
         </Link>
       </div>
     );

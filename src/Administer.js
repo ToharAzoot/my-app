@@ -26,7 +26,8 @@ class Administer extends Component {
     function d(e) {
       return '2px solid green'
     }
-    //border={f(e)}
+    
+    //border={f(e)}  {<img src={"./children/"+e.ChildId+".png"} alt="Nature" style={{ width: '100%' }} /> }
     return (
       <div className="administer-header">
         <div className="container">
@@ -34,9 +35,7 @@ class Administer extends Component {
             {this.state.list.map((e, index) => {
               return (
                 <div className="column">
-                  {/* <img src={img} alt="Nature" style={{ width: '100%' }} /> */}
-                  <img style={{ "height": "25%", "width": "25%", border: f(e.I) }}
-                  src={"./children/" + e.ChildId + ".png"} />
+                  <img style={{"height" : "25%", "width" : "25%", border:f(e.I)}} src={"./children/"+e.ChildId+".png"} />
                 </div>
               )
             })}

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from './axios';
 import Goodbye from './Goodbye';
 import { withRouter } from 'react-router-dom';
 import Administer from './Administer';
 import Userchild from './Userchild';
 import './UI/Signup.css';
+import { connect } from 'react-redux';
+
 
 class Signup extends Component {
     state = {
@@ -19,7 +21,7 @@ class Signup extends Component {
         },
     }
 
-    render() {
+    render() {        
         // if(this.state.user.id!=null || this.state.user.name!=null || this.state.user.class!=null || this.state.user.group!=null || this.state.user.word!=null || this.state.user.gname!=null)
         if (this.state.user.y === null)
             return (
@@ -28,14 +30,19 @@ class Signup extends Component {
                     <form id="signup-form">
                         <div style={{ display: this.state.user.send ? 'none' : 'block', color: 'red' }}>סיסמא שגויה</div>
                         <label>סיסמא</label>
-                        <input type="text" id="Password" value={this.state.Password} className="input" onChange={(event) => this.setState({ Password: event.target.value })} />
+                        <input type="password" id="Password" value={this.state.Password} className="input" onChange={(event) => this.setState({ Password: event.target.value })} />
                     </form>
                     <input type="submit" className="SubmitSignupSave" onClick={this.check} value="אישור" />
                 </div>
             );
         else
-            return (<Userchild value={this.state.Password} />)
-
+        {
+            if(this.props.isAdmin){
+                return <Redirect to='/' />
+            }
+            else
+                return (<Userchild value={this.state.Password} />)
+        }
 
         //onClick={() => this.newUserHandler(this.state)}onSubmit={() => this.newUserHandler(this.state.user)}
     }
@@ -71,14 +78,23 @@ class Signup extends Component {
     //     })
     //}‏
     check = async () => {
+        console.log('check', this.state.Password, process.env.REACT_APP_ADMIN_ID )
+        if(this.state.Password == process.env.REACT_APP_ADMIN_ID){
+            this.props.updateIsAdmin('true');
+        }
+        else {
+            this.props.updateIsAdmin('false');
+        }
+
         const newperson = { ...this.state.user };
         const id = "y"
-        let r = await axios.get('PropertyChildren/GetChild/' + this.state.Password);
-        alert(r.data)
-        newperson[id] = r.data;
+        //let r = await axios.get('PropertyChildren/GetChild/' + this.state.Password);
+       // alert(r.data)
+        newperson[id] = 2; //r.data
         const id1 = "send"
-        newperson[id1] = r.data;
+       // newperson[id1] = r.data;
         this.setState({ user: newperson });
+        this.props.updateIsLogin('true');
     }
     p = async () => {
 
@@ -103,6 +119,33 @@ class Signup extends Component {
         debugger;
         axios.post('PropertyChildren/AddChildren', { children }).then(() => { alert('hiiiii') });
     }
-} export default Signup;
+} 
+const mapStateToProps = (state) => {
+    return {
+      isAdmin: state.isAdmin,
+    };
+  };
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      updateIsAdmin: (isAdmin) => {
+        dispatch({
+          type: 'UPDATE_IS_ADMIN',
+          payload: {
+            isAdmin: isAdmin
+          },
+        });
+      },
+      updateIsLogin: (isLogin) => {
+        dispatch({
+          type: 'UPDATE_IS_LOGIN',
+          payload: {
+            isLogin: isLogin
+          },
+        });
+      },
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Signup);
 
 

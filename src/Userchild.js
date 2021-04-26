@@ -36,7 +36,7 @@ class Userchild extends Component {
                     <p></p>
                     <p className="userchild-text"> {this.state.name}</p>
                     <Link to='/Goodbye'>
-                        <img style={{ "height": "50%", "width": "50%","marginRight":"15%"}}
+                        <img style={{ "height": "50%", "width": "50%","marginRight":"15%","marginTop":'5%'}}
                             src={"../children/" + this.state.pass + ".png"}
                             onClick={() => this.childComing(this.state.pass)} />
                     </Link>

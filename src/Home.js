@@ -12,19 +12,19 @@ class Home extends Component {
             <div className="home-header">
                 <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
                     <div className="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="4000">
+                        <div className="carousel-item active" data-bs-interval="4000">
                             <img src={img1} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item" data-bs-interval="2000">
+                        <div className="carousel-item" data-bs-interval="2000">
                             <img src={img2} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item" data-bs-interval="2000">
+                        <div className="carousel-item" data-bs-interval="2000">
                             <img src={img3} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item" data-bs-interval="2000">
+                        <div className="carousel-item" data-bs-interval="2000">
                             <img src={img4} className="d-block w-100" alt="..." />
                         </div>
-                        <div class="carousel-item" data-bs-interval="2000">
+                        <div className="carousel-item" data-bs-interval="2000">
                             <img src={img5} className="d-block w-100" alt="..." />
                         </div>
                     </div>

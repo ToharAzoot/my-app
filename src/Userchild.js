@@ -15,16 +15,20 @@ class Userchild extends Component {
         name: '',
         louding: true,
     }
-    render() {
+    componentDidMount() {
         //  +this.props.match.params.value if(this.state.louding===true)
         //<Spinner />
         // else
         //<Signup />this.props.match.params.value
         axios.get('PropertyChildren/GetChild/' + this.props.value)
-            .then((res) => this.setState({ pass: res.data }));
+        .then((res) => this.setState({ pass: res.data }));
         console.log(this.state.pass);
         axios.get('PropertyChildren/GetUser/' + this.props.value)
-            .then((res) => this.setState({ name: res.data }));
+        .then((res) => this.setState({ name: res.data }));
+    }
+    render() {
+
+        
 
         if (this.state.louding === true)
             return (

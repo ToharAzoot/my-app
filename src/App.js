@@ -6,7 +6,7 @@ import Allprop from './Allprop';
 import AdministerFirst from './AdministerFirst';
 import Name from './Name';
 import Signup from './Signup';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch, withRouter } from 'react-router-dom';
 import axios from './axios';
 import Error from './error';
 import AddChild from './AddChild';
@@ -14,8 +14,23 @@ import Goodbye from './Goodbye';
 import Propertychildren from './Propertychildren';
 import './UI/App.css';
 import logo from './assets/emuna2-removebg-preview.png';
+import {connect} from 'react-redux';
 
 class App extends Component {
+  state={
+    isAdmin: localStorage.getItem('isAdmin') || 'false'
+  }
+
+  isAdminToTrue = () =>{
+    alert('true');
+    this.setState({isAdmin: 'true'});
+  }
+
+  isAdminToFalse = () =>{
+    alert('false');
+    this.setState({isAdmin: 'false'});
+  }
+
   render() {
     return (
       <div>
@@ -25,11 +40,13 @@ class App extends Component {
           <BrowserRouter>
             <nav>
               <Link to="/"></Link>
-              <Link to="/Signup">
-                <div id="btn1" className="button">
-                  <h1>התחברות</h1>
-                </div>
-              </Link>
+              {this.props.isLogin === 'false' ? 
+                <Link to='/Signup'>
+                  <div id="btn1" className="button">
+                    <h1>התחברות</h1>
+                  </div>
+                </Link>: null} 
+              {this.props.isAdmin === 'true'  && this.props.isLogin === 'true' ? <>
               <Link to="/Administer">
                 <div id="btn2" className="button">
                   <h1>סטטוס ילדים במעון</h1>
@@ -45,11 +62,13 @@ class App extends Component {
                   <h1>הוספת ילד</h1>
                 </div>
               </Link>
-              <Link to="/Goodbye">
-                <div id="btn5" className="button">
-                  <h1>יציאה</h1>
-                </div>
-              </Link>
+              </> : null}
+              {this.props.isLogin === 'true'? 
+                <Link to="/Goodbye">
+                  <div id="btn5" className="button">
+                    <h1>יציאה</h1>
+                  </div>
+                </Link> : null}
             </nav>
             <Switch>
               <Route exact path="/" component={Home} />
@@ -69,5 +88,10 @@ class App extends Component {
     );
   }
 }
-
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAdmin: state.isAdmin,
+    isLogin: state.isLogin
+  };
+};
+export default connect(mapStateToProps)(App);

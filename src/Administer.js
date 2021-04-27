@@ -8,6 +8,13 @@ class Administer extends Component {
   state = {
     list: [],
   }
+  componentDidMount() {
+    axios.get('PropertyChildren/GetAllChildren')
+    .then((res) => this.setState({ list: res.data }))
+    .catch(err => console.log(err))
+  console.log(this.state.list)
+  }
+
   render() {
     axios.get('PropertyChildren/GetAllChildren')
       .then((res) => this.setState({ list: res.data }))
@@ -32,6 +39,7 @@ class Administer extends Component {
       <div className="administer-header">
         <div className="container">
           <div className="row">
+            <h1>סטטוס ילדים במעון</h1>
             {this.state.list.map((e, index) => {
               return (
                 <div className="column">

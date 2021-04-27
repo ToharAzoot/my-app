@@ -18,10 +18,16 @@ class Allprop extends Component {
         Password: "",
         i: 2,
     }
-
-    render() {
-        axios.get('PropertyChildren/Getallpropertyc/' + this.props.match.params.value).then((res) => { this.setState({ list: res.data }) })
+    componentDidMount=()=>{
+        axios.get('PropertyChildren/Getallpropertyc/' + this.props.match.params.value).then((res) => {
+            debugger;
+            
+            this.setState({ list: res.data }) 
+        })
         axios.get('User/Getallpropertyd/' + this.props.match.params.value).then((res) => { this.setState({ father: res.data }) })
+    }
+    render() {
+        
         return (
             <div className="allprop-header">
                 <form id="allprop-form">

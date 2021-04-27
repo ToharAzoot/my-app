@@ -37,7 +37,7 @@ class Signup extends Component {
             );
         else
         {
-            if(this.props.isAdmin){
+            if(this.props.isAdmin === 'true'){
                 return <Redirect to='/' />
             }
             else
@@ -88,13 +88,14 @@ class Signup extends Component {
 
         const newperson = { ...this.state.user };
         const id = "y"
-        //let r = await axios.get('PropertyChildren/GetChild/' + this.state.Password);
-       // alert(r.data)
-        newperson[id] = 2; //r.data
+        let r = await axios.get('PropertyChildren/GetChild/' + this.state.Password);
+        newperson[id] = r.data;
         const id1 = "send"
-       // newperson[id1] = r.data;
+        newperson[id1] = r.data;
         this.setState({ user: newperson });
-        this.props.updateIsLogin('true');
+        if(r.data !== null){
+            this.props.updateIsLogin('true');
+        }
     }
     p = async () => {
 

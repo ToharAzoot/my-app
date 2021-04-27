@@ -138,13 +138,13 @@ class AddChild extends Component {
     //}‏
     postDataHandler = async () => {
 
-        const newperson = { ...this.state.user };
+        let newperson = { ...this.state.user };
 
-        const id = "id"
-        const id7 = "checkid"
-        const id9 = "ifcheckid"
+        let id = "id"
+        let id7 = "checkid"
+        let id9 = "ifcheckid"
         if (this.state.ChildId) {
-            newperson[id] = null;
+            newperson[id] = null;debugger
             let e = await axios.get('PropertyChildren/Checkifthereislike/' + this.state.ChildId);
             alert('e' + e.data)
             if (e.data === false) {
@@ -172,10 +172,10 @@ class AddChild extends Component {
 
 
 
-        const id1 = "name"
+        let id1 = "name"
         newperson[id1] = (this.state.ChildName) ? null : 1;
-        const id2 = "class"
-        const id6 = "numclass"
+        let id2 = "class"
+        let id6 = "numclass"
         if (this.state.ChildClass) {
 
             newperson[id2] = null
@@ -190,14 +190,14 @@ class AddChild extends Component {
             newperson[id6] = null
         }
 
-        const id3 = "group"
+        let id3 = "group"
         newperson[id3] = (this.state.ChildGroup) ? null : 1;
 
-        const id4 = "gname"
+        let id4 = "gname"
         newperson[id4] = (this.state.UserName) ? null : 1;
 
-        const id5 = "word"
-        const id8 = "checkword"
+        let id5 = "word"
+        let id8 = "checkword"
         if (this.state.Password) {
             newperson[id5] = null;
             let r = await axios.get('PropertyChildren/CheckIDNo/' + this.state.Password);

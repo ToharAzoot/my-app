@@ -96,8 +96,8 @@ class Allprop extends Component {
         };
         const us = {
             ChildId: this.props.match.params.value,
-            UserName: (this.state.UserName) ? (this.state.UserName) : (this.state.father.UserName),
-            Password: (this.state.Password) ? (this.state.Password) : (this.state.father.Password),
+            UserName: (this.state.UserName) ? (this.state.UserName) : (this.state.UserName),
+            Password: (this.state.Password) ? (this.state.Password) : (this.state.Password),
         };
 
         await axios.post('PropertyChildren/UpdateChildren', ch)

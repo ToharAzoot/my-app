@@ -8,10 +8,13 @@ class Administer extends Component {
   state = {
     list: [],
   }
-  render() {
+  componentDidMount() {
     axios.get('PropertyChildren/GetAllChildren')
-      .then((res) => this.setState({ list: res.data }))
-    console.log(this.state.list)
+    .then((res) => this.setState({ list: res.data }))
+    .catch(err => console.log(err))
+  }
+
+  render() {
     //return <p>{this.state.list}</p> 
     //this.setState({ id: '233456146' });
     // axios.get('PropertyChildren/GetStatusComing/233456146').then((res)=>this.setState({i:res.data}))
@@ -26,17 +29,17 @@ class Administer extends Component {
     function d(e) {
       return '2px solid green'
     }
-    //border={f(e)}
+    
+    //border={f(e)}  {<img src={"./children/"+e.ChildId+".png"} alt="Nature" style={{ width: '100%' }} /> }
     return (
       <div className="administer-header">
         <div className="container">
           <div className="row">
+            <h1>סטטוס ילדים במעון</h1>
             {this.state.list.map((e, index) => {
               return (
                 <div className="column">
-                  {/* <img src={img} alt="Nature" style={{ width: '100%' }} /> */}
-                  <img style={{ "height": "25%", "width": "25%", border: f(e.I) }}
-                  src={"./children/" + e.ChildId + ".png"} />
+                  <img style={{"height" : "25%", "width" : "25%", border:f(e.I)}} src={"./children/"+e.ChildId+".png"} />
                 </div>
               )
             })}

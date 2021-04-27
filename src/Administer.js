@@ -12,13 +12,9 @@ class Administer extends Component {
     axios.get('PropertyChildren/GetAllChildren')
     .then((res) => this.setState({ list: res.data }))
     .catch(err => console.log(err))
-  console.log(this.state.list)
   }
 
   render() {
-    axios.get('PropertyChildren/GetAllChildren')
-      .then((res) => this.setState({ list: res.data }))
-    console.log(this.state.list)
     //return <p>{this.state.list}</p> 
     //this.setState({ id: '233456146' });
     // axios.get('PropertyChildren/GetStatusComing/233456146').then((res)=>this.setState({i:res.data}))

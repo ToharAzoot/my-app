@@ -19,12 +19,12 @@ class Allprop extends Component {
         i: 2,
     }
     componentDidMount=()=>{
-        axios.get('PropertyChildren/Getallpropertyc/' + this.props.match.params.value).then((res) => {
-            debugger;
-            
-            this.setState({ list: res.data }) 
-        })
-        axios.get('User/Getallpropertyd/' + this.props.match.params.value).then((res) => { this.setState({ father: res.data }) })
+        axios.get('PropertyChildren/Getallpropertyc/' + this.props.match.params.value)
+        .then((res) => this.setState({ list: res.data }))
+
+        //איך לקבל את הפרטים של הורה עם תעודת זהות של הילד
+        axios.get('User/Getallpropertyd/' + this.props.match.params.value)
+        .then((res) => { this.setState({ father: res.data }) })
     }
     render() {
         
@@ -45,11 +45,11 @@ class Allprop extends Component {
                     </div>
                     <div className="allprop-detail">
                         <label>שם הורה</label>
-                        <input type="text" id="UserName" className="allprop-input" placeholder={this.state.father.UserName} onChange={(event) => this.setState({ UserName: event.target.value })} />
+                        <input type="text" id="UserName" className="allprop-input"  onChange={(event) => this.setState({ UserName: event.target.value })} />
                     </div>
                     <div className="allprop-detail">
                         <label>ת"ז הורה</label>
-                        <input type="char" id="Password" className="allprop-input" placeholder={this.state.father.Password} onChange={(event) => this.setState({ Password: event.target.value })} />
+                        <input type="char" id="Password" className="allprop-input"  onChange={(event) => this.setState({ Password: event.target.value })} />
                     </div>
                     <div className="allprop-detail"></div>
                     <div className="allprop-detail">
@@ -89,7 +89,7 @@ class Allprop extends Component {
 
     postDataHandler = async () => {
         const ch = {
-            ChildId: this.props.match.params.value,
+            ChildId: parseInt(this.props.match.params.value),
             ChildName: (this.state.ChildName) ? (this.state.ChildName) : (this.state.list.ChildName),
             ChildClass: (this.state.ChildClass) ? (this.state.ChildClass) : (this.state.list.ChildClass),
             ChildGroup: (this.state.ChildGroup) ? (this.state.ChildGroup) : (this.state.list.ChildGroup),
@@ -101,7 +101,7 @@ class Allprop extends Component {
         };
 
         await axios.post('PropertyChildren/UpdateChildren', ch)
-            .then(() => { alert('hiiiii') })
+            .then((res) => { console.log(res) })
             .then(await axios.post('User/UpdateUser', us)).then(() => { alert('yesssssssssss') }).catch((err) => {
                 console.log(err);
             })

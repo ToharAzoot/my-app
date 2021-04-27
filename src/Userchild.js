@@ -21,25 +21,30 @@ class Userchild extends Component {
         // else
         //<Signup />this.props.match.params.value
         axios.get('PropertyChildren/GetChild/' + this.props.value)
-        .then((res) => this.setState({ pass: res.data }));
+            .then((res) => this.setState({ pass: res.data }));
         console.log(this.state.pass);
         axios.get('PropertyChildren/GetUser/' + this.props.value)
-        .then((res) => this.setState({ name: res.data }));
+            .then((res) => this.setState({ name: res.data }));
     }
     render() {
 
-        
+
 
         if (this.state.louding === true)
             return (
                 <div className="userchild-header">
-                    <p></p>
-                    <p className="userchild-text"> {this.state.name}</p>
-                    <Link to='/Goodbye'>
-                        <img style={{ "height": "50%", "width": "50%","marginRight":"15%","marginTop":'5%'}}
-                            src={"../children/" + this.state.pass + ".png"}
-                            onClick={() => this.childComing(this.state.pass)} />
-                    </Link>
+                    <div>
+                        <div id="col-1">
+                            <p className="userchild-text"> {this.state.name} </p>
+                        </div>
+                        <div id="col-2">
+                            <Link to='/Goodbye'>
+                                {/* <img  src={img} alt="Nature" /> */}
+                                <img id="img" src={"../children/" + this.state.pass + ".png"}
+                                    onClick={() => this.childComing(this.state.pass)} />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             )
         else
